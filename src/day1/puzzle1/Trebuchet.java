@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Trebuchet {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/day1/puzzle1/values.txt");
+        File file = new File("src/day1/values.txt");
         Scanner scanner = new Scanner(file);
         String line;
         int result = 0;
