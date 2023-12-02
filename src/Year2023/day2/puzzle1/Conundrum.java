@@ -1,4 +1,4 @@
-package day2.puzzle1;
+package Year2023.day2.puzzle1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Conundrum {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/day2/input.txt");
+        File file = new File("src/Year2023/day2/input.txt");
         Scanner scanner = new Scanner(file);
         String line;
         int nbLine = 0;
