@@ -7,7 +7,7 @@ import java.util.*;
 public class Path {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/Year2015/day9/test.txt");
+        File file = new File("src/Year2015/day9/input.txt");
         Scanner scanner = new Scanner(file);
         HashMap<ArrayList<String>, Integer> paths = new HashMap<>();
         HashMap<ArrayList<String>, Integer> roads = new HashMap<>();
@@ -22,20 +22,23 @@ public class Path {
         }
         for (ArrayList<String> city : paths.keySet()) {
             roads.put(city, paths.get(city));
-            roads.put(new String[]{city[1], city[0]}, paths.get(city));
-            if (!cities.contains(city[0])) cities.add(city[0]);
-            if (!cities.contains(city[1])) cities.add(city[1]);
+            ArrayList<String> tmp = new ArrayList<>();
+            tmp.add(city.getLast());
+            tmp.add(city.getFirst());
+            roads.put(tmp, paths.get(city));
+            if (!cities.contains(city.getFirst())) cities.add(city.getFirst());
+            if (!cities.contains(city.getLast())) cities.add(city.getLast());
         }
-        /**
-         * OUTPUT
-         */
         System.out.println("**********************************************");
         List<List<String>> permutations  = getAllPermutations(cities);
         // Print the combinations
         for (List<String> permutation : permutations) {
             int length = 0;
             for (int i = 0; i < permutation.size()-1; i++) {
-                length += roads.get(new String[]{permutation.get(i), permutation.get(i+1)});
+                ArrayList<String> tmp = new ArrayList<>();
+                tmp.add(permutation.get(i));
+                tmp.add(permutation.get(i+1));
+                length += roads.get(tmp);
             }
             distances.add(length);
         }
