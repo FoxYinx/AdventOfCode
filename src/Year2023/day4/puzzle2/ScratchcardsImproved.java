@@ -3,8 +3,6 @@ package Year2023.day4.puzzle2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class ScratchcardsImproved {

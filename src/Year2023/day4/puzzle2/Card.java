@@ -6,14 +6,12 @@ import java.util.List;
 public class Card {
 
     private int nbOfThis;
-    private String[] winningNb;
-    private String[] myNb;
-    private ArrayList<String> myNbList;
+    private final String[] winningNb;
+    private final ArrayList<String> myNbList;
 
     public Card(String[] winningNb, String[] myNb) {
         this.nbOfThis = 1;
         this.winningNb = winningNb;
-        this.myNb = myNb;
         this.myNbList = new ArrayList<>(List.of(myNb));
     }
     public boolean contains() {
