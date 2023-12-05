@@ -24,14 +24,14 @@ public class SeedImproved {
         boolean hasFound = false;
         long output = 0;
         long testValue;
-        long testValueNb = 3000000;
+        long testValueNb = 14000000;
         pattern = Pattern.compile("(\\d+) (\\d+) (\\d+)");
         /**
          * Parcours du fichier
          */
         while (!hasFound){
             testValue = testValueNb;
-            //System.out.println("Valeur testée : " + testValue);
+            if (testValue % 1000000 == 0) System.out.println("Valeur testée : " + testValue);
             boolean hasChanged = false;
             scanner = new Scanner(file);
             scanner.nextLine();
