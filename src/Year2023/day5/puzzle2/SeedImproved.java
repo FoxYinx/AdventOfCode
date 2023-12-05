@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class SeedImproved {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/Year2023/day5/test.txt");
+        File file = new File("src/Year2023/day5/input.txt");
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
         long[] seeds = Arrays.stream(line.split(":")[1].strip().split(" ")).mapToLong(Long::parseLong).toArray();
