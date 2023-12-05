@@ -12,28 +12,32 @@ import java.util.regex.Pattern;
 public class SeedImproved {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/Year2023/day5/input.txt");
+        File file = new File("src/Year2023/day5/" + "input" + "Reversed.txt");
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
-        long[] seeds = Arrays.stream(line.split(":")[1].strip().split(" ")).mapToLong(Long::parseLong).toArray();
-        LinkedList<Long> realSeeds = new LinkedList<>();
-        for (int i = 0; i < seeds.length; i += 2) {
-            for (int j = 0; j < seeds[i+1]; j++) {
-                realSeeds.add(seeds[i] + j);
-            }
+        Pattern pattern = Pattern.compile("(\\d+) (\\d+)");
+        Matcher m = pattern.matcher(line);
+        ArrayList<Long[]> ranges = new ArrayList<>();
+        while (m.find()) {
+            ranges.add(new Long[]{Long.parseLong(m.group(1)), Long.parseLong(m.group(2))});
         }
-        ArrayList<Long> outputValues = new ArrayList<>();
-        Pattern pattern = Pattern.compile("(\\d+) (\\d+) (\\d+)");
+        boolean hasFound = false;
+        long output = 0;
+        long testValue;
+        long testValueNb = 3000000;
+        pattern = Pattern.compile("(\\d+) (\\d+) (\\d+)");
         /**
          * Parcours du fichier
          */
-        for (int z = 0; z < realSeeds.size(); z++){
+        while (!hasFound){
+            testValue = testValueNb;
+            //System.out.println("Valeur testée : " + testValue);
             boolean hasChanged = false;
             scanner = new Scanner(file);
             scanner.nextLine();
             while (scanner.hasNext()) {
                 line = scanner.nextLine();
-                Matcher m = pattern.matcher(line);
+                m = pattern.matcher(line);
                 if (line.isEmpty()) {
                     hasChanged = false;
                     continue;
@@ -43,16 +47,22 @@ public class SeedImproved {
                     long src = Long.parseLong(m.group(2));
                     long range = Long.parseLong(m.group(3));
                     // Vérification de la range
-                    if (realSeeds.get(z) >= src && realSeeds.get(z) <= (src+range)) {
-                        realSeeds.set(z, dest + (realSeeds.get(z)-src));
+                    if (testValue >= dest && testValue <= (dest+range)) {
+                        testValue = src + (testValue - dest);
                         hasChanged = true;
                     }
                 }
             }
-            outputValues.add(realSeeds.get(z));
+            for (Long[] longs : ranges) {
+                if (longs[0] <= testValue && (longs[0] + longs[1] - 1) >= testValue) {
+                    hasFound = true;
+                    output = testValueNb;
+                    break;
+                }
+            }
+            testValueNb++;
         }
-        outputValues.sort(Long::compareTo);
-        System.out.println("Lowest location : " + outputValues.getFirst());
+        System.out.println("Lowest location : " + output);
     }
 
 }
