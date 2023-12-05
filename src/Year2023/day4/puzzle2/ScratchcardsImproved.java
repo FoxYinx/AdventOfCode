@@ -3,6 +3,7 @@ package Year2023.day4.puzzle2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,20 +15,26 @@ public class ScratchcardsImproved {
         String[] winningNb;
         String[] myNb;
         int total = 0;
-        int power;
+        ArrayList<Card> cards = new ArrayList<>();
         while (scanner.hasNext()) {
-            power = -1;
             String line = scanner.nextLine();
             line = line.split(":")[1];
             winningNb = line.split("\\|")[0].strip().split(" +");
             myNb = line.split("\\|")[1].strip().split(" +");
-            ArrayList<String> myNbList = new ArrayList<>(List.of(myNb));
-            for (String nb : winningNb) {
-                if (myNbList.contains(nb)) power++;
-            }
-            if (power != -1) total += (int) Math.pow(2, power);
+            cards.add(new Card(winningNb, myNb));
         }
-        System.out.println("You won : " + total + " credits!");
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).contains()) {
+                int nb = cards.get(i).containsHowMany();
+                for (int j = 0; j < nb; j++) {
+                    cards.get(i+1+j).setNbOfThis(cards.get(i+1+j).getNbOfThis() + cards.get(i).getNbOfThis());
+                }
+            }
+        }
+        for (Card card : cards) {
+            total += card.getNbOfThis();
+        }
+        System.out.println("You won : " + total + " cards!");
     }
 
 }
