@@ -61,7 +61,7 @@ public class SeedImproved {
                     break;
                 }
             }
-            testValueNb++;
+            if (!hasFound) testValueNb++;
         }
         System.out.println("Lowest location : " + output);
     }
