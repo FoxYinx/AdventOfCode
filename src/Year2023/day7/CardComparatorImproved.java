@@ -3,7 +3,7 @@ package Year2023.day7;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class CardComparatorImproved implements Comparator<Card> {
+public class CardComparatorImproved implements Comparator<CardImproved> {
 
     private static final HashMap<Character, Integer> power = new HashMap<>();
     static {
@@ -23,7 +23,7 @@ public class CardComparatorImproved implements Comparator<Card> {
     }
 
     @Override
-    public int compare(Card c1, Card c2) {
+    public int compare(CardImproved c1, CardImproved c2) {
         if (c2.getStatusValue() - c1.getStatusValue() > 0) {
             return -1;
         } else if (c2.getStatusValue() - c1.getStatusValue() < 0) {
