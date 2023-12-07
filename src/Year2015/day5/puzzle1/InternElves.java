@@ -2,7 +2,6 @@ package Year2015.day5.puzzle1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class InternElves {

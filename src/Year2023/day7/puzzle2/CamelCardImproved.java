@@ -1,7 +1,6 @@
 package Year2023.day7.puzzle2;
 
 import Year2023.day7.Card;
-import Year2023.day7.CardComparator;
 import Year2023.day7.CardComparatorImproved;
 
 import java.io.File;
