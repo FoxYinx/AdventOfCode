@@ -24,7 +24,6 @@ public class SeedImproved {
         boolean hasFound = false;
         long output = 0;
         long testValue;
-        // 52210645 is too high
         long testValueNb = 0;
         pattern = Pattern.compile("(\\d+) (\\d+) (\\d+)");
         /**
