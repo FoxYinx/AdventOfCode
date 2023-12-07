@@ -1,6 +1,5 @@
 package Year2023.day7.puzzle2;
 
-import Year2023.day7.Card;
 import Year2023.day7.CardComparatorImproved;
 import Year2023.day7.CardImproved;
 
@@ -12,7 +11,7 @@ import java.util.Scanner;
 public class CamelCardImproved {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/Year2023/day7/test.txt");
+        File file = new File("src/Year2023/day7/input.txt");
         Scanner scanner = new Scanner(file);
         ArrayList<CardImproved> cards = new ArrayList<>();
         while (scanner.hasNext()) {

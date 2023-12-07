@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class CardImproved {
 
-    private String value;
-    private int bid;
+    private final String value;
+    private final int bid;
     private String status;
     private int statusValue;
     private boolean fiveKind;
@@ -20,16 +20,41 @@ public class CardImproved {
         this.value = value;
         this.bid = bid;
         this.evaluate();
+        this.evaluateJoker();
     }
 
-    private void evaluate() {
-        this.isHighCard();
-        this.hasOnePair();
-        this.hasTwoPair();
-        this.isThreeKind();
-        this.isFullHouse();
-        this.isFourKind();
-        this.isFiveKind();
+    private void evaluateJoker() {
+        int nbJokers = 0;
+        for (int i = 0; i < this.value.length(); i++) {
+            if (this.value.charAt(i)=='J') nbJokers++;
+        }
+        switch (nbJokers){
+            case 1 -> {
+                if (this.fourKind) this.fiveKind = true;
+                if (this.threeKind) this.fourKind = true;
+                if (this.twoPair) this.fullHouse = true;
+                if (this.onePair) this.threeKind = true;
+                if (this.highcard) this.onePair = true;
+            }
+            case 2 -> {
+                if (this.fullHouse) this.fiveKind = true;
+                if (this.threeKind) this.fiveKind = true;
+                if (this.twoPair) this.fourKind = true;
+                if (this.onePair) this.threeKind = true;
+            }
+            case 3 -> {
+                if (this.fullHouse) this.fiveKind = true;
+                if (this.threeKind) this.fourKind = true;
+            }
+            case 4 -> {
+                if (this.fourKind) this.fiveKind = true;
+            }
+            default -> {}
+        }
+        this.updateStatus();
+    }
+
+    private void updateStatus() {
         if (this.fiveKind) {
             this.status = "FiveKind";
             this.statusValue = 6;
@@ -57,6 +82,17 @@ public class CardImproved {
         }
     }
 
+    private void evaluate() {
+        this.isHighCard();
+        this.hasOnePair();
+        this.hasTwoPair();
+        this.isThreeKind();
+        this.isFullHouse();
+        this.isFourKind();
+        this.isFiveKind();
+        this.updateStatus();
+    }
+
     private void isHighCard() {
         boolean flag = true;
         ArrayList<Character> cache = new ArrayList<>();
@@ -68,7 +104,6 @@ public class CardImproved {
             cache.add(value.charAt(i));
         }
         this.highcard = flag;
-        if (cache.contains('J')) this.highcard = false;
     }
 
     private void hasOnePair() {
@@ -207,5 +242,4 @@ public class CardImproved {
     public int getBid() {
         return bid;
     }
-
 }
