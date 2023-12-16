@@ -1,15 +1,15 @@
-package Year2023.day11.puzzle1;
+package Year2023.day11.puzzle2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CosmicExpansion {
+public class CosmicExpansionImproved {
 
     private static final int nbOfCharacters = 140;
     private static final int size = nbOfCharacters + 1;
-    private static final int expansionPower = 1;
+    private static final int expansionPower = 1000000-1;
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -42,7 +42,7 @@ public class CosmicExpansion {
                     break;
                 }
             }
-           if (flag) map[0][i+1] = String.valueOf(expansionPower);
+            if (flag) map[0][i+1] = String.valueOf(expansionPower);
         }
         for (int i = 0; i < nbOfCharacters; i++) {
             flag = true;
